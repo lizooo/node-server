@@ -5,9 +5,11 @@ console.log(mysqlConnection)
 
 //Movie object create
 var Movie = function(movie){
-  this.name           = movie.Name;
-  this.durationMins   = movie.DurationMins;
-  this.imdbReviews    = movie.IMDBReviews;
+  this.src = movie.Src;
+  this.description = movie.Description;
+  this.name = movie.Name;
+  this.price = movie.Price;
+  this.category = movie.Category;
 };
 
 Movie.create = function (newMovie, result) {
@@ -49,7 +51,7 @@ Movie.findAll = function (result) {
 };
 
 Movie.update = function(MovieID, movie, result){
-  mysqlConnection.query("UPDATE movie SET Name = ?,  DurationMins = ?, IMDBReviews = ? WHERE MovieID = ?", [movie.name, movie.durationMins, movie.imdbReviews, MovieID], function (err, res) {
+  mysqlConnection.query("UPDATE movie SET Src = ?,  Description = ?, Name = ?, Price =?, Category = ? WHERE MovieID = ?", [movie.src, movie.description, movie.name, movie.price, movie.category, MovieID], function (err, res) {
   if(err) {
     console.log("error: ", err);
     result(null, err);
